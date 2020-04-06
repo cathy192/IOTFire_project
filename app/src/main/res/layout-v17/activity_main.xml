@@ -34,11 +34,12 @@
 
         android:orientation="horizontal">
 
+
         <Button
             android:id="@+id/button1"
-            android:layout_width="130dp"
-            android:layout_height="150dp"
-
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
             android:background="@drawable/btn_bg"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
@@ -47,8 +48,8 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="130dp"
-            android:layout_height="150dp"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:background="@drawable/btn_bg"
@@ -58,8 +59,8 @@
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="130dp"
-            android:layout_height="150dp"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:background="@drawable/btn_bg"
@@ -69,15 +70,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="130dp"
-            android:layout_height="150dp"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
 
             android:background="@drawable/btn_bg"
             android:drawableTop="@drawable/light"
@@ -86,8 +88,8 @@
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="130dp"
-            android:layout_height="150dp"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/btn_bg"
             android:drawableTop="@drawable/video1"
@@ -95,8 +97,8 @@
 
         <Button
             android:id="@+id/button6"
-            android:layout_width="130dp"
-            android:layout_height="150dp"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/btn_bg"
             android:drawableTop="@drawable/setup"
