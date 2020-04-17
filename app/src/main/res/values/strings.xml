@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Test_ThingSpeak_Reader</string>
+    <string name="dataBox">Server Data</string>
+</resources>
