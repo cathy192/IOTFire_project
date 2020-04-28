@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static com.example.myapplication.subActivity2.mcontext;
+import  com.example.myapplication.JsonConnection;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        JsonConnection jsonConnection=new JsonConnection();
 
         TextView dataTxt = findViewById(R.id.textView);
+        getJsonData(dataTxt);
 
-        fetchData(dataTxt);
         this.InitializeView();
         this.SetListener();
         if(
@@ -51,38 +53,13 @@ public class MainActivity extends AppCompatActivity {
             this.showNoti();}
     }
 
-    private void fetchData(final TextView dataTxt) {
-
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, server_url, (JSONObject) null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try{
-
-                            dataTxt.setText(response.getString("feeds"));
-
-                        } catch (JSONException e){
-
-                            e.printStackTrace();
-
-                        }
-
-                    }
-                }, new Response.ErrorListener(){
-
-            @Override
-            public void onErrorResponse(VolleyError error){
-
-                Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
-
+    //Json데이터 가져옴
+    public void getJsonData(TextView dataTxt){
+        JsonConnection jsonConnection=new JsonConnection();
+        JsonObjectRequest objectRequest = jsonConnection.fetchData(dataTxt);
         MySingleton.getInstance(MainActivity.this).addToRequestQueue(objectRequest);
-
     }
+
     public void InitializeView() {
         btn1 = (Button) findViewById(R.id.button1);
         btn2 = (Button) findViewById(R.id.button2);
