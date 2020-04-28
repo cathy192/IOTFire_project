@@ -10,7 +10,16 @@
         android:id="@+id/test"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="1번페이지"/>
+        android:gravity="center"
+        android:text="실시간 보기" />
+
+    <TextView
+
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="1번페이지" />
 
 
 </LinearLayout>

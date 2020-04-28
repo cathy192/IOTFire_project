@@ -11,110 +11,100 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/dataBox"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/dataBox" />
 
 
-
-    <ImageView
+        <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         app:srcCompat="@drawable/check" />
-    <TextView
-        android:id="@+id/stateText"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_height="35dp"
-        android:layout_gravity="center_horizontal"
-        android:text="현재 상태는 모두 정상입니다!" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:orientation="horizontal">
-
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="40dp"
-            android:background="@drawable/btn_bg"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:drawableTop="@drawable/cam2"
-            android:text="실시간보기" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/btn_bg"
-            android:drawableTop="@drawable/tem"
-            android:shadowColor="#000000"
-            android:text="현재상태보기" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/btn_bg"
-            android:drawableTop="@drawable/teach"
-            android:text="교육하기" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
+        <TextView
+            android:id="@+id/stateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="40dp"
+            android:text="현재 상태는 모두 정상입니다!" />
 
-            android:background="@drawable/btn_bg"
-            android:drawableTop="@drawable/light"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-            android:text="무드등" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/btn_bg"
-            android:drawableTop="@drawable/video1"
-            android:text="저장된 영상" />
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/btn_bg"
-            android:drawableTop="@drawable/setup"
-            android:text="환경설정" />
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="40dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/btn_bg"
+                android:drawableTop="@drawable/cam2"
+                android:scaleType="fitCenter"
+                android:text="실시간보기" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_bg"
+                android:drawableTop="@drawable/tem"
+                android:shadowColor="#000000"
+                android:text="현재상태보기" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_bg"
+                android:drawableTop="@drawable/teach"
+                android:text="교육하기" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+
+                android:background="@drawable/btn_bg"
+                android:drawableTop="@drawable/light"
+
+                android:text="무드등" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_bg"
+                android:drawableTop="@drawable/video1"
+                android:text="저장된 영상" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_bg"
+                android:drawableTop="@drawable/setup"
+                android:text="환경설정" />
+
+        </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

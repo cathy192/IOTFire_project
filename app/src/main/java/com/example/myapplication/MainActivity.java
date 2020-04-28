@@ -40,24 +40,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        JsonConnection jsonConnection=new JsonConnection();
-
-        TextView dataTxt = findViewById(R.id.textView);
-        getJsonData(dataTxt);
+        JsonConnection jsonConnection = new JsonConnection();
 
         this.InitializeView();
         this.SetListener();
-        if(
-                ((subActivity2)mcontext).stateFunction()=="yellow")
-        {
-            this.showNoti();}
-    }
-
-    //Json데이터 가져옴
-    public void getJsonData(TextView dataTxt){
-        JsonConnection jsonConnection=new JsonConnection();
-        JsonObjectRequest objectRequest = jsonConnection.fetchData(dataTxt);
-        MySingleton.getInstance(MainActivity.this).addToRequestQueue(objectRequest);
+        if (
+                ((subActivity2) mcontext).stateFunction() == "yellow") {
+            this.showNoti();
+        }
     }
 
     public void InitializeView() {
@@ -102,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "버튼 테스트", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(
                         getApplicationContext(), subActivity1.class);
-
-
                 startActivity(intent);
             }
         });
@@ -115,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 //   Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
                 Intent intent2 = new Intent(getApplicationContext(), subActivity2.class);
                 startActivity(intent2);
-
-
 
             }
         });
