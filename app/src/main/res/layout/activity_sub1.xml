@@ -21,5 +21,10 @@
         android:gravity="center_horizontal"
         android:text="1번페이지" />
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>

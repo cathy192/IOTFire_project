@@ -16,13 +16,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-//Json 데이터 저장할 구조체
-class Tm{
-    public String date;
-    public String time;
-    public String temperature;
-    public String humidity;
-}
 
 public class JsonConnection {
 
