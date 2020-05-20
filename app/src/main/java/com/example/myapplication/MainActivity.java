@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "버튼 테스트", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), "버튼 테스트", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(
                         getApplicationContext(), subActivity1.class);
                 startActivity(intent);
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
                 Intent intent3= new Intent(getApplicationContext(), subActivity3.class);
                 startActivity(intent3);
             }
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
                 Intent intent4= new Intent(getApplicationContext(), subActivity4.class);
                 startActivity(intent4);
             }
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
                 Intent intent5= new Intent(getApplicationContext(), subActivity5.class);
                 startActivity(intent5);
             }
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(),"버튼 테스트",Toast.LENGTH_LONG).show();
                 Intent intent6= new Intent(getApplicationContext(), subActivity6.class);
                 startActivity(intent6);
             }
