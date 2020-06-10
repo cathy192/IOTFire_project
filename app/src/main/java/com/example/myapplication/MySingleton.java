@@ -2,11 +2,15 @@ package com.example.myapplication;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.LruCache;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MySingleton {
 
@@ -34,6 +38,7 @@ public class MySingleton {
                         cache.put(url, bitmap);
                     }
                 });
+
     }
 
     public static synchronized MySingleton getInstance(Context context) {
@@ -42,6 +47,7 @@ public class MySingleton {
         }
         return mInstance;
     }
+
 
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {

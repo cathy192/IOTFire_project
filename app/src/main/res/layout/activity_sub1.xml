@@ -13,18 +13,73 @@
         android:gravity="center"
         android:text="실시간 보기" />
 
-    <TextView
-
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="1번페이지" />
+        android:orientation="horizontal">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
+        <TextView
+            android:id="@+id/TimeTxt"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="마지막 업데이트 :" />
+
+        <TextView
+            android:id="@+id/updateTimeText"
+            android:layout_width="281dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="c" />
+    </LinearLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+
+                android:id="@+id/sensorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="sensorData" />
+
+            <TextView
+                android:id="@+id/chartData1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="temperatureChart" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="350dp" />
+
+            <TextView
+                android:id="@+id/chartData2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="humidityChart" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart2"
+                android:layout_width="match_parent"
+                android:layout_height="350dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
