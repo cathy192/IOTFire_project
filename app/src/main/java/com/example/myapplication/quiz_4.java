@@ -2,14 +2,13 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class subActivity4 extends AppCompatActivity {
+public class quiz_4 extends AppCompatActivity {
 
     Button rightBt,wrongBt,nextbt;
     ImageView iv;
@@ -18,14 +17,14 @@ public class subActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub4);
-        rightBt = (Button) findViewById(R.id.right1);
-        wrongBt = (Button) findViewById(R.id.wrong1);
-        iv= (ImageView) findViewById(R.id.answer1);
-        tv=(TextView)findViewById(R.id.desc1);
+        setContentView(R.layout.quiz4);
+        rightBt = (Button) findViewById(R.id.right4);
+        wrongBt = (Button) findViewById(R.id.wrong4);
+        iv= (ImageView) findViewById(R.id.answer4);
+        tv=(TextView)findViewById(R.id.desc4);
 
-        infom=(TextView)findViewById(R.id.info1);
-        nextbt=(Button)findViewById(R.id.nextBtn1);
+        infom=(TextView)findViewById(R.id.info4);
+        nextbt=(Button)findViewById(R.id.nextBtn4);
         rightBt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -33,14 +32,13 @@ public class subActivity4 extends AppCompatActivity {
                 tv.setText("정답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.nextimg);
-                infom.setText("화재가 발생하면 신속히 주변에 알려 대피할 수 있도록 해야한다.");
                 infom.setBackgroundResource(R.drawable.text_border);
+                infom.setText("불이 났을 때는 비상계단으로 탈출하는 것이 가장 안전한다. 하지만 비상계단에 연기가 가득 차 있으면 다른길로 가야한다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(
-                                getApplicationContext(), quiz_2.class);
-                        //       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                getApplicationContext(), quiz_5.class);
                         startActivity(intent);
                     }
                 });
@@ -53,14 +51,13 @@ public class subActivity4 extends AppCompatActivity {
                 tv.setText("오답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);
-                infom.setText("화재가 발생하면, 일단 주위에 알려야합니다.");
                 infom.setBackgroundResource(R.drawable.text_border);
+                infom.setText("물이 있는 화장실은 피할 곳이 없을 때 구조를 잠시 기다리기에 괜찮으나 불이 옮겨 붙거나 연기가 차면 역시 위험하다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Intent intent = new Intent(
-                                getApplicationContext(), subActivity4.class);
+                                getApplicationContext(), quiz_4.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }

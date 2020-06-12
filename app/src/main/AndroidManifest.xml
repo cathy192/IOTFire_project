@@ -3,6 +3,8 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -29,6 +31,10 @@
         </intent-filter>
         </activity>
         <activity android:name=".subActivity4"></activity>
+        <activity android:name=".quiz_2"></activity>
+        <activity android:name=".quiz_3"></activity>
+        <activity android:name=".quiz_4"></activity>
+        <activity android:name=".quiz_5"></activity>
         <activity android:name=".subActivity5"></activity>
         <activity android:name=".subActivity6"></activity>
 
