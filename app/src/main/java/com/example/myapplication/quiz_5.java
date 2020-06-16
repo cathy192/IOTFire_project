@@ -33,7 +33,6 @@ public class quiz_5 extends AppCompatActivity {
                 tv.setText("정답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.nextimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("유독가스는 공기보다 가벼워 위로 뜨기 떄문에 몸을 최대한 낮추어 지나가는게 안전하다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -52,7 +51,6 @@ public class quiz_5 extends AppCompatActivity {
                 tv.setText("오답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("연기를 직접 마시면서 뛰는것은 매우 위험하다. 달리다 보면 숨이 가빠져 유독가스를 더 깊이 마시게된다");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -73,7 +71,6 @@ public class quiz_5 extends AppCompatActivity {
                 tv.setText("오답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("바닥이 열때문에 뜨거워져 있다면 몸에 화상을 입을 수 있으니 조심해야한다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override

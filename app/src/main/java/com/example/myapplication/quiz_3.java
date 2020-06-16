@@ -32,7 +32,6 @@ public class quiz_3 extends AppCompatActivity {
                 tv.setText("정답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.nextimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("창밖으로 연기가 보이지 않으면 자신이 있는 것보다 위에서 불이 난 경우이다. 이럴때는 아래로 대피해야한다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -51,7 +50,6 @@ public class quiz_3 extends AppCompatActivity {
                 tv.setText("오답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("연기가 보이지 않으면 위에서 불이 난 경우이다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override

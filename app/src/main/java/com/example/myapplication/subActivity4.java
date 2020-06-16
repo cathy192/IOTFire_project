@@ -34,7 +34,6 @@ public class subActivity4 extends AppCompatActivity {
 
                 nextbt.setBackgroundResource(R.drawable.nextimg);
                 infom.setText("화재가 발생하면 신속히 주변에 알려 대피할 수 있도록 해야한다.");
-                infom.setBackgroundResource(R.drawable.text_border);
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -49,17 +48,12 @@ public class subActivity4 extends AppCompatActivity {
         wrongBt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-<<<<<<< HEAD
-                //iv.setImageResource(R.drawable.wrongimg);
-                iv.setImageResource(R.drawable.light);
-=======
+
                 iv.setImageResource(R.drawable.wromgim);
->>>>>>> a4a66ff52963659d8f4c6aebbd33688748876781
                 tv.setText("오답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);
                 infom.setText("화재가 발생하면, 일단 주위에 알려야합니다.");
-                infom.setBackgroundResource(R.drawable.text_border);
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

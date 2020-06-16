@@ -32,7 +32,6 @@ public class quiz_2 extends AppCompatActivity {
                 tv.setText("정답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.nextimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("불이 크게 나기 전이라면 큰 냄비뚜껑으로 불을 끌 수 있다. 밀가루나 베이킹 파우더를 뿌려도 좋다");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -52,7 +51,7 @@ public class quiz_2 extends AppCompatActivity {
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);
                 infom.setText("기름이 있는 프라이펜에 물을 부으면 기름이 사방으로 튀면서 불이 더 커진다.");
-                infom.setBackgroundResource(R.drawable.text_border);                nextbt.setOnClickListener(new View.OnClickListener() {
+                nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(

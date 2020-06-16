@@ -32,7 +32,6 @@ public class quiz_4 extends AppCompatActivity {
                 tv.setText("정답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.nextimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("불이 났을 때는 비상계단으로 탈출하는 것이 가장 안전한다. 하지만 비상계단에 연기가 가득 차 있으면 다른길로 가야한다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -51,7 +50,6 @@ public class quiz_4 extends AppCompatActivity {
                 tv.setText("오답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);
-                infom.setBackgroundResource(R.drawable.text_border);
                 infom.setText("물이 있는 화장실은 피할 곳이 없을 때 구조를 잠시 기다리기에 괜찮으나 불이 옮겨 붙거나 연기가 차면 역시 위험하다.");
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
