@@ -4,68 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:background="@drawable/main_back">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-123dp"
+        tools:layout_editor_absoluteY="16dp">
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            />
         <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/check" />
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="30dp"
+            app:srcCompat="@drawable/check2" />
 
         <TextView
             android:id="@+id/stateText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="50dp"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"
             android:text="현재 상태는 모두 정상입니다!" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="horizontal">
 
 
             <Button
                 android:id="@+id/button1"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="40dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/btn_bg"
-                android:drawableTop="@drawable/cam2"
-                android:scaleType="fitCenter"
-                android:text="실시간보기" />
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="#ffffff"
+                android:text="실시간 보기"
+                android:drawableTop="@drawable/mirror" />
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/btn_bg"
-                android:drawableTop="@drawable/tem"
+                android:background="#ffffff"
+                android:drawableTop="@drawable/lightt"
                 android:shadowColor="#000000"
-                android:text="현재상태보기" />
+                android:text="조명보기" />
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/btn_bg"
-                android:drawableTop="@drawable/teach"
-                android:text="교육하기" />
+                android:background="#ffffff"
+                android:drawableTop="@drawable/test"
+                android:text="영상보기" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,32 +86,30 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="40dp"
-
-                android:background="@drawable/btn_bg"
-                android:drawableTop="@drawable/light"
-
-                android:text="무드등" />
+                android:background="#ffffff"
+                android:drawableTop="@drawable/ruler"
+                android:text="퀴즈풀기" />
 
             <Button
                 android:id="@+id/button5"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/btn_bg"
-                android:drawableTop="@drawable/video1"
+                android:background="#ffffff"
+                android:drawableTop="@drawable/note"
                 android:text="저장된 영상" />
 
             <Button
                 android:id="@+id/button6"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/btn_bg"
-                android:drawableTop="@drawable/setup"
+                android:background="#ffffff"
+                android:drawableTop="@drawable/set"
                 android:text="환경설정" />
 
         </LinearLayout>

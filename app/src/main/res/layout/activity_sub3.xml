@@ -6,19 +6,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <TextView
 
-        android:id="@+id/test"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:text="3번페이지"/>
     <WebView
         android:id="@+id/wv_stream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
     </WebView>
-
+<!--
     <EditText
         android:id="@+id/videoUrl"
         android:layout_width="wrap_content"
@@ -28,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Savebutton"
-        android:text="영상저장" />
+        android:text="영상저장" />   -->
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

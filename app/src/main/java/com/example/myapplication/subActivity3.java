@@ -28,7 +28,7 @@ import java.io.IOException;
 
 public class subActivity3 extends AppCompatActivity {
     WebView webView;
-    EditText editText;
+  //  EditText editText;
     String url="http://192.168.0.12:8080/stream_simple.html";
     private static final String videoFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MediaProjection.mp4";
     private static final int REQUEST_CODE_PERMISSIONS = 100;
@@ -40,8 +40,8 @@ public class subActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub3);
         checkSelfPermission();
-        Button bt_save=(Button)findViewById(R.id.Savebutton);
-        editText= (EditText)findViewById(R.id.videoUrl);
+       // Button bt_save=(Button)findViewById(R.id.Savebutton);
+      //  editText= (EditText)findViewById(R.id.videoUrl);
         webView=(WebView)findViewById(R.id.wv_stream);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
@@ -50,13 +50,13 @@ public class subActivity3 extends AppCompatActivity {
 
         webView.loadUrl(url);
         getPreferences();
-        bt_save.setOnClickListener(new View.OnClickListener(){
+        /*bt_save.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 savePreferences(editText.getText().toString());
             }
 
-        });
+        }); */
     }
  //   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -210,7 +210,7 @@ public class subActivity3 extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         String sUrl = "http://192.168.0.12:8080/stream_simple.mjpeg";
                 //pref.getString("stream", (String) url);//디폴터값이 왜 안되???
-        editText.setText(sUrl);
+   //     editText.setText(sUrl);
     }
 
     //save
