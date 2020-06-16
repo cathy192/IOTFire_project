@@ -62,7 +62,7 @@ public class subActivity1 extends AppCompatActivity {
 
     //https://api.thingspeak.com/channels/990298/fields/1.json?results=20
     String channelNum="990298";
-    String resultNum="15";
+    String resultNum="30";
     String server_url="https://api.thingspeak.com/channels/"+channelNum+"/feeds.json?results="+resultNum;
 
     Handler mHandler;
