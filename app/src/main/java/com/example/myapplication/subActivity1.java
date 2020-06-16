@@ -1,12 +1,16 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,12 +46,19 @@ class Tm{
 public class subActivity1 extends AppCompatActivity {
 
     TextView updateTimeText; //최신 업데이트 시간
-    Button updateBtn;    //최신 동기화 버튼
-    TextView sensorText;  //센서값
-    LineChart lineChart1; //온도센서 차트
-    LineChart lineChart2; //스도센서 차트
+    ImageButton updateBtn;    //최신 동기화 버튼
 
+    LineChart lineChart1; //온도/습도센서 차트
+    LineChart lineChart2;   //가스센서 차트
 
+    ImageButton temHuBtn;
+    ImageButton gasBtn;
+
+    //센서값
+    TextView temText;
+    TextView huText;
+    TextView coText;
+    TextView lpgText;
 
     //https://api.thingspeak.com/channels/990298/fields/1.json?results=20
     String channelNum="990298";
@@ -67,27 +78,36 @@ public class subActivity1 extends AppCompatActivity {
         fetchData();
     }
 
+    @SuppressLint("WrongViewCast")
     public void InitializeView() {
         updateTimeText=(TextView)findViewById(R.id.updateTimeText);
-        updateBtn=(Button)findViewById(R.id.updateBtn);
-        sensorText = findViewById(R.id.sensorText);
+        updateBtn=(ImageButton)findViewById(R.id.updateBtn);
 
         lineChart1=(LineChart) findViewById(R.id.chart);
-        lineChart2=(LineChart)findViewById(R.id.chart2);
+        lineChart2=(LineChart) findViewById(R.id.gasChart);
+
+        temText=(TextView)findViewById(R.id.tempText2);
+        huText=(TextView)findViewById(R.id.huText2);
+        coText=(TextView)findViewById(R.id.COText2);
+        lpgText=(TextView)findViewById(R.id.LPGText2);
     }
 
     public void SetListener(){
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sensorText.setText("");
                 updateTimeText.setText("");
                 lineChart1.clear();
+                lineChart2.clear();
+
+                temText.setText("");
+                huText.setText("");
+                coText.setText("");
+                lpgText.setText("");
                 fetchData();
             }
         });
     }
-
 
     //(2020.05.01)mainActivity에서 로딩중에 받아와서 그 값을 받아와 출력 할 수 있도록 변경할 수 있음 좋겠다 =========================================================
 
@@ -103,7 +123,6 @@ public class subActivity1 extends AppCompatActivity {
                         String dataText="";
                         try{
                             JSONArray jsonArr=new JSONArray(response.getString("feeds"));
-
                             //Json에서 필요한 값만 추출하여 배열에 저장
                             for(int i=0;i<jsonArr.length();i++){
                                 JSONObject tempJ=jsonArr.getJSONObject(i);
@@ -118,29 +137,24 @@ public class subActivity1 extends AppCompatActivity {
                                 tt.temperature=tempJ.getString("field1");
                                 tt.humidity=tempJ.getString("field2");
                                 tt.co=tempJ.getString("field3");
-
-
                                 try {
                                     //습도가 100넘으면 값에 추가시키지 않음=> 이거 예외처리 고쳐야함
-                                    //String temp=tt.humidity;
-                                    //float humidity=Float.valueOf(temp);
-                                    //if(humidity>100)
-                                    //    continue;
                                     fireData.add(tt);
                                 }
                                 catch (NumberFormatException e){
                                     continue;
                                 }
-
                             }
-
-                            //화면에 Json에서 받아온 날짜 및 센서 값 등 출력
-                            printText(fireData, sensorText);
+                            Tm lastData=fireData.get(jsonArr.length()-1);
+                            temText.setText(lastData.temperature+"℃");
+                            huText.setText(lastData.humidity+"%");
+                            float co=Float.valueOf(lastData.co);
+                            int intCo= (int) co;
+                            coText.setText(String.valueOf(intCo)+"");
+                            //lpgText.setText(lastData.lpg+"");
 
                             //chart 출력
                             printTemperatureChart(fireData);
-                            printHumidityChart(fireData);
-
                             setUpdateTime();
 
                         } catch (JSONException e){
@@ -181,27 +195,53 @@ public class subActivity1 extends AppCompatActivity {
         textView.setText(dataTxt);
     }
 
-    //받아온 값으로 차트 만들기 -> 차트 온도로 보여주기
+    //받아온 값으로 차트 만들기 -> 차트 온도/습도로 보여주기
     void printTemperatureChart(ArrayList<Tm> fireData){
         String temp;
-        float a;
+        float a,b,c,d;
 
         //차트 값 (y)
-        ArrayList<Entry> entries = new ArrayList<>();
+        ArrayList<Entry> entries1 = new ArrayList<>();  //온도
+        ArrayList<Entry> entries2=new ArrayList<>();    //습도
+
+        ArrayList<Entry> entries3=new ArrayList<>();    //CO
+        ArrayList<Entry> entries4=new ArrayList<>();    //LPG
 
         for(int i=0;i<fireData.size();i++){
             try {
                 temp = fireData.get(i).temperature;
                 a = Float.valueOf(temp);
+                temp=fireData.get(i).humidity;
+                b=Float.valueOf(temp);
+            }
+            catch (NumberFormatException e) {
+                a = 0;
+                b = 0;
+            }
+
+            try{
+                temp=fireData.get(i).co;
+                c=Float.valueOf(temp);
+                //temp=fireData.get(i).lpg;
+                //d=Float.valueOf(temp);
             }
             catch (NumberFormatException e){
-                a=0;
+                c=0;
+                d=0;
             }
+
             // => Entry(x,y)
-            entries.add(new Entry(a,i));
+            entries1.add(new Entry(a,i));
+            entries2.add(new Entry(b,i));
+
+            entries3.add(new Entry(c,i));
+            //entries4.add(new Entry(d,i));
         }
 
-        LineDataSet lineDataSet=new LineDataSet(entries,"# of calls");
+        LineDataSet lineDataSet1=new LineDataSet(entries1,"온도");
+        LineDataSet lineDataSet2=new LineDataSet(entries2,"습도");
+        LineDataSet lineDataSet3=new LineDataSet(entries3,"CO");
+        //LineDataSet lineDataSet4=new LineDataSet(entries4,"LPG");
 
         //라벨 (상단)
         ArrayList<String> labels= new ArrayList<String>();
@@ -210,89 +250,48 @@ public class subActivity1 extends AppCompatActivity {
         }
 
         //색깔 및 곡선 차트
-        lineDataSet.setColors(Collections.singletonList(ColorTemplate.rgb("#ff0000")));
-        lineDataSet.setDrawCircles(false);
-        lineDataSet.setDrawCubic(true);
+        lineDataSet1.setColors(Collections.singletonList(ColorTemplate.rgb("#ff0000")));
+        lineDataSet1.setDrawCircles(false);
+        lineDataSet1.setDrawCubic(true);
 
-        LineData lineData = new LineData(labels,lineDataSet);
-        //lineData.setDrawValues(false);
+        lineDataSet2.setColors(Collections.singletonList(ColorTemplate.rgb("#00ff00")));
+        lineDataSet2.setDrawCircles(false);
+        lineDataSet2.setDrawCubic(true);
 
-        YAxis y = lineChart1.getAxisLeft();
-        y.setAxisMaxValue(100);
-        y.setAxisMinValue(0);
+        lineDataSet3.setColors(Collections.singletonList(ColorTemplate.rgb("#0000ff")));
+        lineDataSet3.setDrawCircles(false);
+        lineDataSet3.setDrawCubic(true);
 
-        YAxis yAxisRight = lineChart1.getAxisRight(); //Y축의 오른쪽면 설정
-        yAxisRight.setDrawLabels(false);
-        yAxisRight.setDrawAxisLine(false);
-        yAxisRight.setDrawGridLines(false);
+        //lineDataSet4.setColors(Collections.singletonList(ColorTemplate.rgb("#00ffff")));
+        //lineDataSet4.setDrawCircles(false);
+        //lineDataSet4.setDrawCubic(true);
+
+        LineData lineData=new LineData(labels);
+        lineData.addDataSet(lineDataSet1);
+        lineData.addDataSet(lineDataSet2);
+
+        LineData lineData1=new LineData(labels);
+        lineData1.addDataSet(lineDataSet3);
+        //lineData1.addDataSet(lineDataSet4);
 
         lineChart1.setData(lineData);
-
+        YAxis yLeft = lineChart1.getAxisLeft();
+        YAxis yRight = lineChart1.getAxisRight(); //Y축의 오른쪽면 설정
+        yLeft.setDrawGridLines(false);
+        yRight.setDrawLabels(false);
+        yRight.setDrawAxisLine(false);
+        yRight.setDrawGridLines(false);
         //눈금 없애기
         lineChart1.getXAxis().setDrawGridLines(false);
-        lineChart1.getAxisLeft().setDrawGridLines(false);
-        lineChart1.getAxisRight().setDrawGridLines(false);
 
-        //배경색
-        //lineChart1.setBackgroundColor(Color.WHITE);
-        lineDataSet.setDrawFilled(true);
-        lineDataSet.setFillColor(Color.RED);
-    }
-
-    //차트 습도로 보여주기
-    void printHumidityChart(ArrayList<Tm> fireData){
-        String temp;
-        float a;
-
-        //차트 값 (y)
-        ArrayList<Entry> entries = new ArrayList<>();
-
-        for(int i=0;i<fireData.size();i++){
-            try {
-                temp = fireData.get(i).humidity;
-                a = Float.valueOf(temp);
-            }
-            catch (NumberFormatException e){
-                a=0;
-            }
-            // => Entry(x,y)
-            entries.add(new Entry(a,i));
-        }
-
-        LineDataSet lineDataSet=new LineDataSet(entries,"# of calls");
-
-        //라벨 (상단)
-        ArrayList<String> labels= new ArrayList<String>();
-        for(int i=0;i<fireData.size();i++){
-            labels.add(fireData.get(i).date+"/"+fireData.get(i).time);
-        }
-
-        //색깔 및 곡선 차트
-        lineDataSet.setColors(Collections.singletonList(ColorTemplate.rgb("#0000ff")));
-        lineDataSet.setDrawCircles(false);
-        lineDataSet.setDrawCubic(true);
-
-        LineData lineData = new LineData(labels,lineDataSet);
-
-        YAxis y = lineChart2.getAxisLeft();
-        y.setAxisMaxValue(100);
-        y.setAxisMinValue(0);
-
-        lineChart2.setData(lineData);
-
+        lineChart2.setData(lineData1);
+        YAxis yLeft2=lineChart2.getAxisLeft();
+        YAxis yRight2=lineChart2.getAxisRight();
+        yLeft2.setDrawGridLines(false);
+        yRight2.setDrawLabels(false);
+        yRight2.setDrawAxisLine(false);
+        yRight2.setDrawGridLines(false);
         lineChart2.getXAxis().setDrawGridLines(false);
-        lineChart2.getAxisLeft().setDrawGridLines(false);
-        lineChart2.getAxisRight().setDrawGridLines(false);
-
-        YAxis yAxisRight = lineChart2.getAxisRight(); //Y축의 오른쪽면 설정
-        yAxisRight.setDrawLabels(false);
-        yAxisRight.setDrawAxisLine(false);
-        yAxisRight.setDrawGridLines(false);
-
-        //배경색
-        //lineChart1.setBackgroundColor(Color.WHITE);
-        lineDataSet.setDrawFilled(true);
-        lineDataSet.setFillColor(Color.BLUE);
 
     }
 
