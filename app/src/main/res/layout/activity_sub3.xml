@@ -29,4 +29,26 @@
         android:layout_height="wrap_content"
         android:id="@+id/Savebutton"
         android:text="영상저장" />
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Hello World!"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/actionRec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="start REC"
+        android:textColor="@android:color/white" />
+
+
 </LinearLayout>
