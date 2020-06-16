@@ -26,8 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.myapplication.subActivity2.mcontext;
-import  com.example.myapplication.JsonConnection;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -60,13 +58,14 @@ public class MainActivity extends AppCompatActivity {
     //http://api.thingspeak.com/channels/990298/feed/last.json
     String url = "https://thingspeak.com/channels/"+channel+"/feeds.json?results=1";
 
+    String state="기본";
+
     int fireRisk=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        JsonConnection jsonConnection = new JsonConnection();
 
         this.InitializeView();
         this.SetListener();
@@ -92,11 +91,26 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject=response.getJSONArray("feeds").getJSONObject(0);
                             //JSON객체에서 사용할 값(센서 값)만 추출하여 저장한다.
-                            String strTem=jsonObject.getString("field1");
-                            String strCo = jsonObject.getString("field3");
+                            String strTem=jsonObject.getString("field1");   //온도
+                            String strCo = jsonObject.getString("field3");  //CO
+
+                            //상태 변경
                             //온도>=80, CO(일산화탄소)의 농도>=0.05%,LPG>=0.05% 이면 화재가 났다고 판단한다.
-                            //if(Float.valueOf(strCo)>=50&&Float.valueOf(strTem)>=80)
-                                showNoti("화재 발생","화재가 발생하였습니다. 신속하게 대피하여주시기 바랍니다.");
+                            if(Float.valueOf(strCo)>=50) {     // + LPG, 연기
+                                if(Float.valueOf(strTem)>=80) {   // + 불꽃 세기
+                                    showNoti("화재 발생", "화재가 발생하였습니다. 신속하게 대피하여주시기 바랍니다.");
+                                    state="화재";
+                                }
+                                else{
+                                    showNoti("주의", "가스가 기준치 있습니다. 화재에 주의해주세요");
+                                    //가스의 농도 수치로 알람에 나타낼 수 있도록 하기
+                                    state="주의";
+                                }
+                            }
+                            else{
+                                state="기본";
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (Exception e){
