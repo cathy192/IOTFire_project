@@ -49,7 +49,12 @@ public class subActivity4 extends AppCompatActivity {
         wrongBt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+<<<<<<< HEAD
+                //iv.setImageResource(R.drawable.wrongimg);
+                iv.setImageResource(R.drawable.light);
+=======
                 iv.setImageResource(R.drawable.wromgim);
+>>>>>>> a4a66ff52963659d8f4c6aebbd33688748876781
                 tv.setText("오답입니다!");
 
                 nextbt.setBackgroundResource(R.drawable.retryimg);

@@ -47,6 +47,8 @@ public class subActivity1 extends AppCompatActivity {
     LineChart lineChart1; //온도센서 차트
     LineChart lineChart2; //스도센서 차트
 
+
+
     //https://api.thingspeak.com/channels/990298/fields/1.json?results=20
     String channelNum="990298";
     String resultNum="15";
