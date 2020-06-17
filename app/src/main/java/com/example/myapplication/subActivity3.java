@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +30,7 @@ import java.io.IOException;
 public class subActivity3 extends AppCompatActivity {
     WebView webView;
   //  EditText editText;
-    String url="http://192.168.0.12:8080/stream_simple.html";
+    String url="http://192.168.1.133:8080/stream_simple.html";
     private static final String videoFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MediaProjection.mp4";
     private static final int REQUEST_CODE_PERMISSIONS = 100;
     private static final int REQUEST_CODE_MediaProjection = 101;
@@ -47,9 +48,10 @@ public class subActivity3 extends AppCompatActivity {
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
 
-
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         webView.loadUrl(url);
-        getPreferences();
+    //    getPreferences();
         /*bt_save.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -206,10 +208,10 @@ public class subActivity3 extends AppCompatActivity {
         });
         screenRecorder.start();
     }
-    private void getPreferences(){
+   /* private void getPreferences(){
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        String sUrl = "http://192.168.0.12:8080/stream_simple.mjpeg";
-                //pref.getString("stream", (String) url);//디폴터값이 왜 안되???
+        String sUrl = "http://192.168.1.133:8080/stream_simple.html";
+
    //     editText.setText(sUrl);
     }
 
@@ -221,5 +223,5 @@ public class subActivity3 extends AppCompatActivity {
         editor.commit();
         finish();
     }
-
+*/
 }

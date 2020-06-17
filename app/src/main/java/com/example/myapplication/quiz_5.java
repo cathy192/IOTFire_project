@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class quiz_5 extends AppCompatActivity {
 
@@ -37,9 +40,24 @@ public class quiz_5 extends AppCompatActivity {
                 nextbt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(
-                                getApplicationContext(), quiz_5.class);
-                        startActivity(intent);
+                        new AlertDialog.Builder(quiz_5.this) // TestActivity 부분에는 현재 Activity의 이름 입력.
+                                .setMessage("퀴즈를 모두 풀었습니다!")     // 제목 부분 (직접 작성)
+                                .setPositiveButton("확인", new DialogInterface.OnClickListener() {      // 버튼1 (직접 작성)
+                                    public void onClick(DialogInterface dialog, int which){
+                                        Toast.makeText(getApplicationContext(), "확인 누름", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(
+
+                                                getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);// 실행할 코드
+                                    }
+                                })
+                                .setNegativeButton("취소", new DialogInterface.OnClickListener() {     // 버튼2 (직접 작성)
+                                    public void onClick(DialogInterface dialog, int which){
+                                        Toast.makeText(getApplicationContext(), "취소 누름", Toast.LENGTH_SHORT).show(); // 실행할 코드
+                                    }
+                                })
+                                .show();
+
                     }
                 });
             }
