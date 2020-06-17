@@ -29,7 +29,7 @@ import java.io.IOException;
 public class subActivity3 extends AppCompatActivity {
     WebView webView;
   //  EditText editText;
-    String url="http://192.168.0.12:8080/stream_simple.html";
+    String url="http://192.168.1.133:8080/stream_simple.html";
     private static final String videoFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MediaProjection.mp4";
     private static final int REQUEST_CODE_PERMISSIONS = 100;
     private static final int REQUEST_CODE_MediaProjection = 101;
@@ -208,7 +208,7 @@ public class subActivity3 extends AppCompatActivity {
     }
     private void getPreferences(){
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        String sUrl = "http://192.168.0.12:8080/stream_simple.mjpeg";
+        String sUrl = "http://192.168.1.133:8080/stream_simple.mjpeg";
                 //pref.getString("stream", (String) url);//디폴터값이 왜 안되???
    //     editText.setText(sUrl);
     }
