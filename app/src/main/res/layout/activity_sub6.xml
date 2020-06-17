@@ -12,5 +12,15 @@
         android:layout_height="58dp"
         android:text="6번페이지"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startButton"
+        android:text="시작"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stopButton"
+        android:text="정지"/>
 
 </LinearLayout>

@@ -3,20 +3,24 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,24 +28,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".subActivity1"></activity>
-        <activity android:name=".subActivity2"></activity>
+        <activity android:name=".subActivity1" />
+        <activity android:name=".subActivity2" />
         <activity android:name=".subActivity3">
             <intent-filter>
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".subActivity4"></activity>
-        <activity android:name=".quiz_2"></activity>
-        <activity android:name=".quiz_3"></activity>
-        <activity android:name=".quiz_4"></activity>
-        <activity android:name=".quiz_5"></activity>
-        <activity android:name=".subActivity5"></activity>
-        <activity android:name=".subActivity6"></activity>
-
-
-
+        <activity android:name=".subActivity4" />
+        <activity android:name=".quiz_2" />
+        <activity android:name=".quiz_3" />
+        <activity android:name=".quiz_4" />
+        <activity android:name=".quiz_5" />
+        <activity android:name=".subActivity5" />
+        <activity android:name=".subActivity6" />
     </application>
 
 </manifest>

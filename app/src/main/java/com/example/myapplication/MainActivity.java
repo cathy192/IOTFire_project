@@ -61,12 +61,11 @@ public class MainActivity extends AppCompatActivity {
     String state="기본";
 
     int fireRisk=0;
-
+    Intent passedIntent = getIntent();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         this.InitializeView();
         this.SetListener();
 
@@ -74,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
         Timer timer=new Timer();
         //5초에 한번씩 타이머가 울리도록 설정 ( 5초에 한번씩 서버에서 센서 정보를 받아옴 )
         timer.schedule(timerTask,0,5000);
-    }
 
+
+    }
     void createTimer(){
         //타이머 객체 생성
         timerTask=new TimerTask() {
