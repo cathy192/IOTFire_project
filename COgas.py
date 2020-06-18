@@ -7,8 +7,8 @@ SPIMOSI = 10
 SPICS = 8
 mq7_dpin = 26
 mq7_apin = 0
-mq5_apin=1
-mq5_dpin=27
+#mq5_apin=1
+#mq5_dpin=27
 
 def init():
          GPIO.setwarnings(False)
@@ -19,7 +19,7 @@ def init():
          GPIO.setup(SPICLK, GPIO.OUT)
          GPIO.setup(SPICS, GPIO.OUT)
          GPIO.setup(mq7_dpin,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
-         GPIO.setup(mq5_dpin,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+        # GPIO.setup(mq5_dpin,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 def readadc(adcnum, clockpin, mosipin, misopin, cspin):
         if ((adcnum > 7) or (adcnum < 0)):
                 return -1
@@ -58,14 +58,14 @@ def main():
          init()
          while True:
                   COlevel=readadc(mq7_apin, SPICLK, SPIMOSI, SPIMISO, SPICS)
-                  LPGlevel=readadc(mq5_apin,SPICLK,SPIMOSI,SPIMISO,SPICS)
-                  if GPIO.input(mq5_dpin):
-                           print("LPG not leak")
-                           time.sleep(0.5)
-                  else:
-                           print("LPG is detected")
-                           print"Current LPG AD value = "+str("%.2f"%((LPGlevel/1024.)*5))+" V"
-                           print"Current LPG density is:"+str("%.2f"%((LPGlevel/1024.)*100))+" %"
+                 # LPGlevel=readadc(mq5_apin,SPICLK,SPIMOSI,SPIMISO,SPICS)
+                 # if GPIO.input(mq5_dpin):
+                 #          print("LPG not leak")
+                 #          time.sleep(0.5)
+                 # else:
+                 #          print("LPG is detected")
+                 #          print"Current LPG AD value = "+str("%.2f"%((LPGlevel/1024.)*5))+" V"
+                 #          print"Current LPG density is:"+str("%.2f"%((LPGlevel/1024.)*100))+" %"
                   if GPIO.input(mq7_dpin):
                            print("CO not leak")
                            html=urllib.urlopen("https://api.thingspeak.com/update?api_key=17LJP4VT3R02xCAQ&field3="+str(0))
