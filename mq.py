@@ -5,7 +5,8 @@ import time
 import math
 from MCP3008 import MCP3008
 #from MCP3208 import MCP3208
-class MQ():
+MQ_PIN1=2
+class MQ1():
 
     ######################### Hardware Related Macros #########################
     MQ_PIN                       = 0        # define which analog input channel you are going to use (MCP3008)
@@ -25,10 +26,12 @@ class MQ():
     GAS_LPG                      = 0
     GAS_CO                       = 1
     GAS_SMOKE                    = 2
-
+    GAS_LNG                      = 3
+    FLAME                        = 4
     def __init__(self, Ro=10, analogPin=0):
         self.Ro = Ro
         self.MQ_PIN = analogPin
+        self.MQ_PIN1 = 2
         self.adc = MCP3008()
         
         self.LPGCurve = [2.3,0.21,-0.47]    # two points are taken from the curve. 
@@ -43,7 +46,8 @@ class MQ():
                                             # with these two points, a line is formed which is "approximately equivalent" 
                                             # to the original curve.
                                             # data format:[ x, y, slope]; point1: (lg200, 0.53), point2: (lg10000,  -0.22)  
-                
+        self.LNGCurve = [2.3,0.52,-0.45]       
+        
         print("Calibrating...")
         self.Ro = self.MQCalibration(self.MQ_PIN)
         print("Calibration is done...\n")
@@ -53,9 +57,12 @@ class MQ():
     def MQPercentage(self):
         val = {}
         read = self.MQRead(self.MQ_PIN)
+        read1= self.adc.read(MQ_PIN1)
         val["GAS_LPG"]  = self.MQGetGasPercentage(read/self.Ro, self.GAS_LPG)
         val["CO"]       = self.MQGetGasPercentage(read/self.Ro, self.GAS_CO)
         val["SMOKE"]    = self.MQGetGasPercentage(read/self.Ro, self.GAS_SMOKE)
+        val["GAS_LNG"]  = self.MQGetGasPercentage(read/self.Ro, self.GAS_LNG)
+        val["FLAME"]    = read1
         return val
         
     ######################### MQResistanceCalculation #########################
@@ -124,6 +131,8 @@ class MQ():
             return self.MQGetPercentage(rs_ro_ratio, self.COCurve)
         elif ( gas_id == self.GAS_SMOKE ):
             return self.MQGetPercentage(rs_ro_ratio, self.SmokeCurve)
+        elif (gas_id == self.GAS_LNG):
+            return self.MQGetPercentage(rs_ro_ratio, self.LNGCurve)
         return 0
      
     #########################  MQGetPercentage #################################

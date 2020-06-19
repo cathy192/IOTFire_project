@@ -1,22 +1,25 @@
 import RPi.GPIO as GPIO
 import time
 import Adafruit_DHT
-from mq import *
 import sys
 import os
-
-sensor=Adafruit_DHT.DHt11
+import urllib
+sensor=Adafruit_DHT.DHT11
 t_pin=4
 DO_pin = 21
 AO_pin = 2#fire flame pin
-#flame sensor AO connected to ADC chanannel 0
-# change these as desired - they're the pins connected from the
-# SPI port on the ADC to the Cobbler
 SPICLK = 11
 SPIMISO = 9
 SPIMOSI = 10
 SPICS = 8
 flame_value=0
+
+RL_VALUE=5
+RO_CLEAN_AIR_FACTOR=9.83
+CALIBARAION_SAMPLE_TIMES=50
+CALIBRATION_SAMPLE_INTERVAL=500
+READ_SAMPLE_INTERVAL=50
+READ_SAMPLE_TIMES=5
 #port init
 def init():
           GPIO.setwarnings(False)
@@ -72,29 +75,25 @@ def main():
          time.sleep(2)
          print"will detect sonud and light signal"
          sum=0
-         os.system("sh streaming.sh")
          while True:
                   flame_value = readadc(AO_pin, SPICLK, SPIMOSI, SPIMISO, SPICS)
-                  humidity,temperature=Adafruit_DHt.read_retry(sensor,t_pin)
-                  perc=mq.MQPercentage()
-                  lpg=perc["GAS_LPG"]
-                  co=perc["CO"]
-                  smoke=perc["SMOKE"]
+                  humidity,temperature=Adafruit_DHT.read_retry(sensor,t_pin)
                   lng=0
-                  gas_sensor={co,lpg,smoke,lng}
-                  html=urllib.urlopen("https://api.thingspeak.com/update?api_key=17LJP4VT3R02XCAQ&field1="+str(temperature)+"&field2="+str(humidity)+"&field3="+str(co)+"&field4="+str(lpg)+"&field5="+str(smoke)+"&field6="+str(flame_value))
-                  if gas_sensor[0]>=74:
-                      sum=sum+1
-                      gaslist.append(gas_sensor[0])
-                  elif gas_sensor[1]<=2.1 or gas_sensor[1]>=10:
-                      sum=sum+1
-                      gaslist.append(gas_sensor[1])
-                  elif gas_sensor[2]>=5 and gas_sensor[2]<=15:
-                      sum=sum+1
-                      gaslist.append(gas_sensor[2])
-                  elif gas_sensor[3]<=5 or gas_sensor[3]>=15:
-                      sum=sum+1
-                      gaslist.append(gas_sensor[3])
+                  print(flame_value)
+                  #gas_sensor={co,lpg,smoke,lng}
+                  #html=urllib.urlopen("https://api.thingspeak.com/update?api_key=17LJP4VT3R02XCAQ&field1="+str(temperature)+"&field2="+str(humidity)+"&field3="+str(co)+"&field4="+str(lpg)+"&field5="+str(smoke)+"&field6="+str(flame_value))
+                  #if gas_sensor[0]>=74:
+                  #    sum=sum+1
+                  #    gaslist.append(gas_sensor[0])
+                  #elif gas_sensor[1]<=2.1 or gas_sensor[1]>=10:
+                  #    sum=sum+1
+                  #    gaslist.append(gas_sensor[1])
+                  #elif gas_sensor[2]>=5 and gas_sensor[2]<=15:
+                  #    sum=sum+1
+                  #    gaslist.append(gas_sensor[2])
+                 # elif gas_sensor[3]<=5 or gas_sensor[3]>=15:
+                 #     sum=sum+1
+                 #     gaslist.append(gas_sensor[3])
 
                   if sum>0:
                       if fire>=150 or temp>=60:
@@ -126,6 +125,5 @@ if __name__ =='__main__':
                   main()
          except KeyboardInterrupt:
                   pass
- 
-          
-          
+
+
