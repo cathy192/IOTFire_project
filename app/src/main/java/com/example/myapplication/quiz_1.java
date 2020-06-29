@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class subActivity4 extends AppCompatActivity {
+public class quiz_1 extends AppCompatActivity {
 
     Button rightBt,wrongBt,nextbt;
     ImageView iv;
@@ -18,7 +18,7 @@ public class subActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub4);
+        setContentView(R.layout.quiz1);
         rightBt = (Button) findViewById(R.id.right1);
         wrongBt = (Button) findViewById(R.id.wrong1);
         iv= (ImageView) findViewById(R.id.answer1);
@@ -59,7 +59,7 @@ public class subActivity4 extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent intent = new Intent(
-                                getApplicationContext(), subActivity4.class);
+                                getApplicationContext(), quiz_1.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }

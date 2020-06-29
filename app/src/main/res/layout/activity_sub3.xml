@@ -6,44 +6,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-
-    <WebView
-        android:id="@+id/wv_stream"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-    </WebView>
-<!--
-    <EditText
-        android:id="@+id/videoUrl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Savebutton"
-        android:text="영상저장" />   -->
-    <SeekBar
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp" />
+        android:layout_height="69dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="Hello World!"
-        android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/title5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="실시간 영상보기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#B85115"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/actionRec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:text="start REC"
-        android:textColor="@android:color/white" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#B85115"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
+        <WebView
+            android:id="@+id/wv_stream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            tools:ignore="MissingConstraints">
+
+        </WebView>
+        <!--
+            <EditText
+                android:id="@+id/videoUrl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Savebutton"
+                android:text="영상저장" />   -->
+
+        <Button
+            android:id="@+id/actionRec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@android:color/holo_red_light"
+            android:text="start REC"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_marginTop="15dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 스트리밍영상을 저장하기 원하시면 START REC 버튼을 누르시고,
+종료하길 원하면 STOP REC를 누르십시오. 영상은 나의 휴대폰에 저장됩니다."
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
 </LinearLayout>
