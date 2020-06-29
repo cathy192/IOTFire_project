@@ -30,7 +30,7 @@ import java.io.IOException;
 public class subActivity3 extends AppCompatActivity {
     WebView webView;
   //  EditText editText;
-    String url="http://192.168.1.133:8080/stream_simple.html";
+    String url="http://192.168.1.10:8080/stream/video.mjpeg";
     private static final String videoFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MediaProjection.mp4";
     private static final int REQUEST_CODE_PERMISSIONS = 100;
     private static final int REQUEST_CODE_MediaProjection = 101;

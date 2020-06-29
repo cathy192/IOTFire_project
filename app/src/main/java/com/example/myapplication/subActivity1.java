@@ -41,6 +41,7 @@ class Tm{
     public String temperature;
     public String humidity;
     public String co;
+    public String LPG;
 }
 
 public class subActivity1 extends AppCompatActivity {
@@ -64,8 +65,6 @@ public class subActivity1 extends AppCompatActivity {
     String channelNum="990298";
     String resultNum="30";
     String server_url="https://api.thingspeak.com/channels/"+channelNum+"/feeds.json?results="+resultNum;
-
-    Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,9 +133,10 @@ public class subActivity1 extends AppCompatActivity {
                                 tt.date=time.substring(0,idx);
                                 idx = time.indexOf("Z");
                                 tt.time=time.substring(time.lastIndexOf("T")+1,idx);
-                                tt.temperature=tempJ.getString("field1");
-                                tt.humidity=tempJ.getString("field2");
+                                tt.humidity=tempJ.getString("field1");
+                                tt.temperature=tempJ.getString("field2");
                                 tt.co=tempJ.getString("field3");
+                                tt.LPG=tempJ.getString("field4");
                                 try {
                                     //습도가 100넘으면 값에 추가시키지 않음=> 이거 예외처리 고쳐야함
                                     fireData.add(tt);
@@ -146,12 +146,22 @@ public class subActivity1 extends AppCompatActivity {
                                 }
                             }
                             Tm lastData=fireData.get(jsonArr.length()-1);
-                            temText.setText(lastData.temperature+"℃");
-                            huText.setText(lastData.humidity+"%");
-                            float co=Float.valueOf(lastData.co);
-                            int intCo= (int) co;
-                            coText.setText(String.valueOf(intCo)+"");
-                            //lpgText.setText(lastData.lpg+"");
+                            double temper= Double.valueOf(lastData.temperature);
+                            temper=Math.round(temper*100)/100.0;
+
+                            double  humi= Double.valueOf(lastData.humidity);
+                            humi= Math.round(humi*100)/100.0;
+
+                            temText.setText(String.valueOf(temper)+"℃");
+                            huText.setText(String.valueOf(humi)+"%");
+
+                            double co=Float.valueOf(lastData.co);
+                            co= Math.round(co*100)/100.0;
+                            coText.setText(String.valueOf(co)+"ppm");
+
+                            double  lpg= Double.valueOf(lastData.LPG);
+                            lpg= Math.round(lpg*100)/100.0;
+                            lpgText.setText(lpg+"ppm");
 
                             //chart 출력
                             printTemperatureChart(fireData);
@@ -184,16 +194,6 @@ public class subActivity1 extends AppCompatActivity {
 
     //==================================================================================================================================
 
-    //textView에 원하는 값 출력
-    void printText(ArrayList<Tm> fireData, TextView textView){
-        String dataTxt="";
-        //화면에 출력
-        for(int i=0;i<fireData.size();i++){
-            dataTxt+="날짜:"+fireData.get(i).date+" 시간:"+fireData.get(i).time+" 온도:"
-                    +fireData.get(i).temperature+" 습도:"+fireData.get(i).humidity+" CO:"+fireData.get(i).co+"\n";
-        }
-        textView.setText(dataTxt);
-    }
 
     //받아온 값으로 차트 만들기 -> 차트 온도/습도로 보여주기
     void printTemperatureChart(ArrayList<Tm> fireData){
@@ -213,6 +213,10 @@ public class subActivity1 extends AppCompatActivity {
                 a = Float.valueOf(temp);
                 temp=fireData.get(i).humidity;
                 b=Float.valueOf(temp);
+
+                a= (float) (Math.round(a*100)/100.0);
+                b= (float) (Math.round(b*100)/100.0);
+
             }
             catch (NumberFormatException e) {
                 a = 0;
@@ -222,8 +226,11 @@ public class subActivity1 extends AppCompatActivity {
             try{
                 temp=fireData.get(i).co;
                 c=Float.valueOf(temp);
-                //temp=fireData.get(i).lpg;
-                //d=Float.valueOf(temp);
+                temp=fireData.get(i).LPG;
+                d=Float.valueOf(temp);
+
+                c= (float) (Math.round(c*100)/100.0);
+                d= (float) (Math.round(d*100)/100.0);
             }
             catch (NumberFormatException e){
                 c=0;
@@ -235,13 +242,13 @@ public class subActivity1 extends AppCompatActivity {
             entries2.add(new Entry(b,i));
 
             entries3.add(new Entry(c,i));
-            //entries4.add(new Entry(d,i));
+            entries4.add(new Entry(d,i));
         }
 
         LineDataSet lineDataSet1=new LineDataSet(entries1,"온도");
         LineDataSet lineDataSet2=new LineDataSet(entries2,"습도");
         LineDataSet lineDataSet3=new LineDataSet(entries3,"CO");
-        //LineDataSet lineDataSet4=new LineDataSet(entries4,"LPG");
+        LineDataSet lineDataSet4=new LineDataSet(entries4,"LPG");
 
         //라벨 (상단)
         ArrayList<String> labels= new ArrayList<String>();
@@ -262,9 +269,9 @@ public class subActivity1 extends AppCompatActivity {
         lineDataSet3.setDrawCircles(false);
         lineDataSet3.setDrawCubic(true);
 
-        //lineDataSet4.setColors(Collections.singletonList(ColorTemplate.rgb("#00ffff")));
-        //lineDataSet4.setDrawCircles(false);
-        //lineDataSet4.setDrawCubic(true);
+        lineDataSet4.setColors(Collections.singletonList(ColorTemplate.rgb("#00ffff")));
+        lineDataSet4.setDrawCircles(false);
+        lineDataSet4.setDrawCubic(true);
 
         LineData lineData=new LineData(labels);
         lineData.addDataSet(lineDataSet1);
@@ -272,7 +279,7 @@ public class subActivity1 extends AppCompatActivity {
 
         LineData lineData1=new LineData(labels);
         lineData1.addDataSet(lineDataSet3);
-        //lineData1.addDataSet(lineDataSet4);
+        lineData1.addDataSet(lineDataSet4);
 
         lineChart1.setData(lineData);
         YAxis yLeft = lineChart1.getAxisLeft();
