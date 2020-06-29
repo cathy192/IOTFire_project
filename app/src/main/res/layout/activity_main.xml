@@ -94,7 +94,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="#ffffff"
                 android:drawableTop="@drawable/ruler"
-                android:text="퀴즈풀기" />
+                android:text="공부하기" />
 
             <Button
                 android:id="@+id/button5"
@@ -103,7 +103,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="#ffffff"
                 android:drawableTop="@drawable/note"
-                android:text="저장된 영상" />
+                android:text="긴급 연락" />
 
             <Button
                 android:id="@+id/button6"

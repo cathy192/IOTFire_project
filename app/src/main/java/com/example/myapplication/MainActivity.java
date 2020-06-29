@@ -14,20 +14,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import java.util.Timer;
@@ -37,6 +29,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MESSAGE_TEST_TYPE = 1004;
+    ImageView stateimage;
     Button btn1;
     Button btn2;
     Button btn3;
@@ -68,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.InitializeView();
         this.SetListener();
-
+        stateimage=(ImageView)findViewById(R.id.imageView);
         createTimer();
         Timer timer=new Timer();
         //5초에 한번씩 타이머가 울리도록 설정 ( 5초에 한번씩 서버에서 센서 정보를 받아옴 )
@@ -100,11 +93,13 @@ public class MainActivity extends AppCompatActivity {
                                 if(Float.valueOf(strTem)>=80) {   // + 불꽃 세기
                                     showNoti("화재 발생", "화재가 발생하였습니다. 신속하게 대피하여주시기 바랍니다.");
                                     state="화재";
+                                    stateimage.setImageResource(R.drawable.firefire1);
                                 }
                                 else{
                                     showNoti("주의", "가스가 기준치 있습니다. 화재에 주의해주세요");
                                     //가스의 농도 수치로 알람에 나타낼 수 있도록 하기
                                     state="주의";
+                                    stateimage.setImageResource(R.drawable.dangerdanger);
                                 }
                             }
                             else{

@@ -76,6 +76,7 @@
             android:text="비상계단으로 간다."/>
 
         <LinearLayout
+            android:layout_marginTop="70dp"
             android:id="@+id/Anserlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -107,7 +108,7 @@
                     android:gravity="center">
                     <TextView
                         android:layout_width="180dp"
-                        android:layout_height="100dp"
+                        android:layout_height="130dp"
                         android:textColor="#d000008c"
                         android:padding="10dp"
 

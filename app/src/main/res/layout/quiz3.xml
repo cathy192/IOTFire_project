@@ -74,6 +74,8 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:text="위층으로 올라간다."/>
+        <LinearLayout
+            android:layout_marginTop="70dp"
             android:id="@+id/Anserlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -105,10 +107,9 @@
                     android:gravity="center">
                     <TextView
                         android:layout_width="180dp"
-                        android:layout_height="100dp"
+                        android:layout_height="130dp"
                         android:textColor="#d000008c"
                         android:padding="10dp"
-
                         android:id="@+id/info3" />
                     <Button
                         android:layout_width="50dp"
@@ -120,5 +121,5 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
+    </LinearLayout>
     </LinearLayout>
