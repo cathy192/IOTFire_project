@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject=response.getJSONArray("feeds").getJSONObject(0);
                             //JSON객체에서 사용할 값(센서 값)만 추출하여 저장한다.
-                            String strTem=jsonObject.getString("field1");   //온도
+                            String strTem=jsonObject.getString("field2");   //온도
                             String strCo = jsonObject.getString("field3");  //CO
 
                             //상태 변경
